@@ -61,21 +61,28 @@ returnLast' _ _ _ d = d
 dodgy :: Num a => a -> a -> a
 dodgy x y = x + y * 10
 
-
 -- Initially 11
 oneIsOne :: Integer -> Integer
 oneIsOne = dodgy 1
-
 
 -- Initially 21
 oneIsTwo :: Integer -> Integer
 oneIsTwo = (flip dodgy) 2
 
-
 -- Guards
 
 numbers :: (Ord a, Num a, Num p) => a -> p
-numbers x 
-    | x < 0 = -1
-    | x == 0 = 0
-    | x > 0 = 1
+numbers x
+  | x < 0 = -1
+  | x == 0 = 0
+  | x > 0 = 1
+
+-- Function composition example
+--let f x = take 5 . enumFrom $ x
+
+-- Exercise, Code
+roundTrip :: (Show a, Read a) => a -> a
+roundTrip a = read (show a)
+
+roundTripPF :: (Read a, Show a) => a -> a
+roundTripPF a = (read . show) $ a
